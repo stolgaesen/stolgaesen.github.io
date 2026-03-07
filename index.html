@@ -1,32 +1,64 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samet Tolga Esen | Software Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            /* Daha yumuşak, modern bir koyu tema */
-            --bg-color: #1e293b;
-            --card-bg: #334155;
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
             --primary-color: #3b82f6;
-            /* Teknoloji mavisi */
             --primary-hover: #2563eb;
+            --secondary-color: #38bdf8;
             --text-main: #f8fafc;
             --text-muted: #cbd5e1;
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
-            background-color: var(--bg-color);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background-attachment: fixed;
             color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        /* Animasyon Tanımlamaları */
+        /* Language Toggle System */
+        body.lang-en .tr {
+            display: none !important;
+        }
+
+        body.lang-tr .en {
+            display: none !important;
+        }
+
+        .lang-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .lang-toggle:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
         @keyframes fadeUp {
             from {
                 opacity: 0;
@@ -57,39 +89,44 @@
         }
 
         header {
-            background-color: #0f172a;
-            padding: 60px 20px;
+            padding: 80px 20px 60px;
             text-align: center;
-            border-bottom: 4px solid var(--primary-color);
+            border-bottom: 1px solid var(--glass-border);
+            background: radial-gradient(circle at top, rgba(59, 130, 246, 0.15), transparent 50%);
+            position: relative;
         }
 
-        /* Profil Fotoğrafı Stili & Hover Efekti */
         .profile-img {
-            width: 160px;
-            height: 160px;
+            width: 170px;
+            height: 170px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--primary-color);
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 3px solid transparent;
+            background-image: linear-gradient(var(--bg-color), var(--bg-color)), linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .profile-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+            transform: scale(1.08) rotate(3deg);
         }
 
         h1 {
             color: #ffffff;
             margin: 0;
-            font-size: 2.8rem;
-            letter-spacing: 1px;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
         .subtitle {
-            color: var(--primary-color);
-            font-size: 1.4rem;
+            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
             margin-top: 5px;
             font-weight: 600;
         }
@@ -97,48 +134,84 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 50px 20px;
         }
 
-        /* Kart Stilleri & Hover Efektleri */
         .section {
             background-color: var(--card-bg);
-            padding: 35px;
-            margin-bottom: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: rgba(59, 130, 246, 0.3);
         }
 
         .section h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid #475569;
-            padding-bottom: 10px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 15px;
             margin-top: 0;
-        }
-
-        .card {
-            border-left: 4px solid var(--primary-color);
-            padding-left: 20px;
             margin-bottom: 25px;
         }
 
+        .section h2 i {
+            color: var(--primary-color);
+        }
+
+        .card {
+            border-left: 3px solid var(--primary-color);
+            background: rgba(15, 23, 42, 0.4);
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 25px;
+            transition: background 0.3s ease;
+        }
+
+        .card:hover {
+            background: rgba(30, 41, 59, 0.8);
+        }
+
         .card h3 {
-            margin: 0 0 5px 0;
+            margin: 0 0 8px 0;
             color: #fff;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .card .date {
-            color: var(--text-muted);
+            color: var(--secondary-color);
             font-size: 0.9rem;
-            margin-bottom: 10px;
-            font-style: italic;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            font-size: 0.8rem;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--secondary-color);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .skills {
@@ -148,132 +221,259 @@
         }
 
         .skill-tag {
-            background-color: #1e293b;
-            color: #93c5fd;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid #3b82f6;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            background-color: rgba(15, 23, 42, 0.6);
+            color: var(--text-muted);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .skill-tag:hover {
             background-color: var(--primary-color);
             color: #fff;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
         }
 
-        /* Buton Stilleri & Hover Efektleri */
         .contact-links {
-            margin-top: 30px;
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .contact-links a {
-            display: inline-block;
-            margin: 10px 10px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             padding: 12px 28px;
-            background-color: var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.05);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 30px;
             font-weight: 600;
+            border: 1px solid var(--glass-border);
             transition: all 0.3s ease;
         }
 
         .contact-links a:hover {
-            background-color: var(--primary-hover);
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
             transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
         }
 
-        a {
-            color: #60a5fa;
-            text-decoration: none;
-            transition: color 0.3s ease;
+        a.project-link {
+            color: var(--text-muted);
+            transition: color 0.3s;
         }
 
-        a:hover {
-            color: #93c5fd;
-            text-decoration: underline;
+        a.project-link:hover {
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 25px;
+            }
         }
     </style>
 </head>
 
-<body>
+<body class="lang-en">
+
+    <button class="lang-toggle" onclick="toggleLanguage()">
+        <span class="en">🇹🇷 TR</span>
+        <span class="tr">🇬🇧 EN</span>
+    </button>
 
     <header class="animate-fade-up">
         <img src="p.jpeg" alt="Samet Tolga Esen" class="profile-img">
 
         <h1>Samet Tolga Esen</h1>
-        <div class="subtitle">Software Engineer</div>
+        <div class="subtitle">
+            <span class="en">Software Engineer</span>
+            <span class="tr">Yazılım Mühendisi</span>
+        </div>
         <div class="contact-links">
-            <a href="https://github.com/stolgaesen" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/samet-tolga-esen-94012826b/" target="_blank">LinkedIn</a>
-            <a href="mailto:samettolga@gmail.com">Email Gönder</a>
+            <a href="https://github.com/stolgaesen" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/samet-tolga-esen-94012826b/" target="_blank"><i
+                    class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="mailto:samettolga@gmail.com"><i class="fas fa-envelope"></i>
+                <span class="en">Contact Me</span>
+                <span class="tr">İletişime Geç</span>
+            </a>
         </div>
     </header>
 
     <div class="container">
 
         <div class="section animate-fade-up delay-1">
-            <h2>Hakkımda</h2>
-            <p>İzmir Ekonomi Üniversitesi'nde 4. sınıf Yazılım Mühendisliği öğrencisiyim. Modern web teknolojileri,
-                algoritma tasarımı ve IT altyapıları konularında güçlü bir temele sahibim. Java, Spring Boot ve React
-                teknolojilerine hakimim ve öğrendiğim teknik becerileri profesyonel yazılım geliştirme ortamlarında
-                uygulamaya hevesliyim.</p>
+            <h2><i class="fas fa-user-astronaut"></i>
+                <span class="en">About Me</span>
+                <span class="tr">Hakkımda</span>
+            </h2>
+            <p class="en">I am a 4th-year Software Engineering student at Izmir University of Economics. I have a strong
+                foundation in modern web technologies, AI integrations, and IT infrastructure. I specialize in building
+                end-to-end applications using Java (Spring Boot), React, and Python. I am highly motivated to design
+                scalable architectures and deploy AI-driven solutions in professional environments.</p>
+            <p class="tr">İzmir Ekonomi Üniversitesi'nde 4. sınıf Yazılım Mühendisliği öğrencisiyim. Modern web
+                teknolojileri, yapay zeka entegrasyonları ve IT altyapıları konularında güçlü bir temele sahibim. Java
+                (Spring Boot), React ve Python kullanarak uçtan uca uygulamalar geliştiriyorum. Ölçeklenebilir mimariler
+                tasarlamaya ve yapay zeka odaklı çözümleri profesyonel ortamlarda uygulamaya büyük ilgi duyuyorum.</p>
         </div>
 
         <div class="section animate-fade-up delay-2">
-            <h2>Projeler</h2>
+            <h2><i class="fas fa-code-branch"></i>
+                <span class="en">Featured Projects</span>
+                <span class="tr">Öne Çıkan Projeler</span>
+            </h2>
 
             <div class="card">
-                <h3>Teklifs - E-Ticaret Platformu</h3>
-                <p>Backend tarafında <strong>Spring Boot (Java)</strong>, frontend tarafında ise <strong>React (JSX ve
-                        CSS)</strong> kullanarak uçtan uca geliştirdiğimiz kapsamlı e-ticaret uygulaması. Kullanıcı
-                    deneyimini ön planda tutan, modern ve ölçeklenebilir bir mimari ile tasarlandı.</p>
+                <h3>
+                    <span>IEUCourseChatbot</span>
+                    <a href="https://github.com/stolgaesen/IEUCourseChatbot" target="_blank" class="project-link"><i
+                            class="fab fa-github"></i></a>
+                </h3>
+                <p class="en">An intelligent, RAG-powered academic advisor CLI application built for the IUE Engineering
+                    Faculty. It automates curriculum data scraping, processes it into a Chroma vector database using
+                    Generative AI embeddings, and answers student queries via the Gemini 2.5 Pro LLM with strict context
+                    boundaries.</p>
+                <p class="tr">İEÜ Mühendislik Fakültesi için geliştirilmiş, RAG tabanlı akıllı akademik danışman.
+                    Müfredat verilerini otomatik olarak çeker, üretken yapay zeka embeddingleri ile Chroma vektör
+                    veritabanına işler ve öğrencilerin sorularını Gemini 2.5 Pro LLM üzerinden yanıtlar.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">LangChain</span>
+                    <span class="tech-badge">Gemini 2.5 Pro</span>
+                    <span class="tech-badge">ChromaDB</span>
+                    <span class="tech-badge">RAG</span>
+                </div>
             </div>
 
             <div class="card">
-                <h3>Yapay Zeka & RAG Projesi</h3>
-                <p>Python kullanarak geliştirdiğim Retrieval-Augmented Generation (RAG) projesi. Büyük Dil Modelleri
-                    (LLM) entegrasyonu ile veri alma ve içerik üretme süreçlerini optimize ettim.</p>
+                <h3>Teklifs - E-Commerce Platform</h3>
+                <div class="date">
+                    <span class="en">Targeting Closed Beta: April 2026</span>
+                    <span class="tr">Kapalı Beta Hedefi: Nisan 2026</span>
+                </div>
+                <p class="en">A comprehensive, end-to-end e-commerce web application. The robust backend is built with
+                    Spring Boot, serving a highly interactive and modern frontend developed in React. The project
+                    utilizes Docker for containerization and ensures a scalable architecture.</p>
+                <p class="tr">Kapsamlı ve uçtan uca bir e-ticaret web uygulaması. Güçlü arka yüzü Spring Boot ile
+                    oluşturulmuş olup, React ile geliştirilen interaktif ve modern bir ön yüze hizmet vermektedir.
+                    Proje, Docker kullanılarak konteynerize edilmiş ve ölçeklenebilir bir mimaride tasarlanmıştır.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">Java (Spring Boot)</span>
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">Docker</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>
+                    <span>Smoodify</span>
+                    <a href="https://github.com/MehmetSakirSeker/Smoodify" target="_blank" class="project-link"><i
+                            class="fab fa-github"></i></a>
+                </h3>
+                <p class="en">A mood-based music recommendation system utilizing a Client-Server architecture. Features
+                    a Java Swing GUI, real-time weather integration via Open-Meteo API, and a Python data pipeline for
+                    processing Spotify datasets.</p>
+                <p class="tr">İstemci-Sunucu (Client-Server) mimarisi kullanan, duygu durumuna dayalı müzik öneri
+                    sistemi. Java Swing arayüzü, Open-Meteo API ile anlık hava durumu entegrasyonu ve Spotify veri
+                    setlerini işlemek için Python tabanlı bir veri hattı (pipeline) içerir.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">Java (Swing, Sockets)</span>
+                    <span class="tech-badge">Python (Pandas)</span>
+                    <span class="tech-badge">MySQL & JDBC</span>
+                    <span class="tech-badge">APIs (Weather, Geo)</span>
+                </div>
             </div>
         </div>
 
         <div class="section animate-fade-up delay-3">
-            <h2>Deneyimler</h2>
+            <h2><i class="fas fa-briefcase"></i>
+                <span class="en">Experience</span>
+                <span class="tr">Deneyimler</span>
+            </h2>
 
             <div class="card">
                 <h3>Software/Systems Intern | Disti Bilişim</h3>
                 <div class="date">08/2025 - 09/2025</div>
-                <p>Altyapı izleme ve IT operasyonları için Motadata kullandım. Motadata'nın izleme yeteneklerini
-                    genişletmek için Python tabanlı özel eklentiler (plugin) geliştirdim ve entegre ettim. Sistem
-                    uyarılarını ve performans raporlarını otomatikleştirdim.</p>
+                <p class="en">Utilized Motadata for infrastructure monitoring and IT operations. Developed and
+                    integrated custom Python-based plugins to extend Motadata's monitoring capabilities. Automated
+                    system alerts and performance reporting processes.</p>
+                <p class="tr">Altyapı izleme ve IT operasyonları için Motadata kullandım. Motadata'nın izleme
+                    yeteneklerini genişletmek için Python tabanlı özel eklentiler (plugin) geliştirdim ve entegre ettim.
+                    Sistem uyarılarını ve performans raporlarını otomatikleştirdim.</p>
             </div>
 
             <div class="card">
                 <h3>IT Intern | Gates Corporation</h3>
                 <div class="date">07/2025 - 08/2025</div>
-                <p>IT departmanı bünyesinde donanım ve yazılım konfigürasyonlarını yöneterek teknik destek sağladım. Ağ
-                    güvenliğini korumak ve sistem performansını optimize etmek için ekiple işbirliği yaptım.</p>
+                <p class="en">Provided technical support by managing hardware and software configurations within the IT
+                    department. Collaborated with the team to maintain network security and optimize system performance.
+                </p>
+                <p class="tr">IT departmanı bünyesinde donanım ve yazılım konfigürasyonlarını yöneterek teknik destek
+                    sağladım. Ağ güvenliğini korumak ve sistem performansını optimize etmek için ekiple işbirliği
+                    yaptım.</p>
             </div>
         </div>
 
         <div class="section animate-fade-up delay-3">
-            <h2>Teknik Yetenekler</h2>
+            <h2><i class="fas fa-layer-group"></i>
+                <span class="en">Technical Skills</span>
+                <span class="tr">Teknik Yetenekler</span>
+            </h2>
             <div class="skills">
-                <span class="skill-tag">Java (Spring Boot, Swing)</span>
-                <span class="skill-tag">React (JSX, CSS)</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">C# / .NET</span>
-                <span class="skill-tag">RAG & LLM Integration</span>
-                <span class="skill-tag">SQL / PL/SQL / MySQL</span>
-                <span class="skill-tag">Git / GitHub</span>
+                <span class="skill-tag"><i class="fab fa-java"></i> Java / Spring Boot</span>
+                <span class="skill-tag"><i class="fab fa-react"></i> React</span>
+                <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+                <span class="skill-tag"><i class="fab fa-windows"></i> C# / .NET</span>
+                <span class="skill-tag"><i class="fas fa-brain"></i> LLMs & RAG</span>
+                <span class="skill-tag"><i class="fab fa-docker"></i> Docker</span>
+                <span class="skill-tag"><i class="fab fa-linux"></i> Linux</span>
+                <span class="skill-tag"><i class="fas fa-database"></i> SQL / MySQL</span>
+            </div>
+        </div>
+
+        <div class="section animate-fade-up delay-3">
+            <h2><i class="fas fa-compass"></i>
+                <span class="en">Interests & Hobbies</span>
+                <span class="tr">İlgi Alanları</span>
+            </h2>
+            <div class="skills">
+                <span class="skill-tag"><i class="fas fa-flag-checkered"></i> Formula 1</span>
+                <span class="skill-tag"><i class="fas fa-gamepad"></i> PC Gaming</span>
+                <span class="skill-tag"><i class="fas fa-car"></i> Automotive & Audio Tech</span>
             </div>
         </div>
 
     </div>
 
+    <script>
+        function toggleLanguage() {
+            const body = document.body;
+            if (body.classList.contains('lang-en')) {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-tr');
+            } else {
+                body.classList.remove('lang-tr');
+                body.classList.add('lang-en');
+            }
+        }
+    </script>
 </body>
 
 </html>
